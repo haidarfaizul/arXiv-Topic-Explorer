@@ -5,19 +5,20 @@
 [![Kaggle Dataset](https://img.shields.io/badge/Kaggle-ArXiv%20Dataset-blue?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/Cornell-University/arxiv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-**arXiv Topic Explorer** adalah proyek sains data *end-to-end* yang melakukan pengelompokan (*clustering*) topik, analisis tren popularitas temporal, dan visualisasi interaktif dari **3,1 juta+** metadata publikasi ilmiah di arXiv dari tahun 1993 hingga 2026.
+**arXiv Topic Explorer** adalah proyek sains data _end-to-end_ yang melakukan pengelompokan (_clustering_) topik, analisis tren popularitas temporal, dan visualisasi interaktif dari **3,1 juta+** metadata publikasi ilmiah di arXiv dari tahun 1993 hingga 2026.
 
 ---
 
 ## 📌 Daftar Isi
-* [Overview Arsitektur](#-overview-arsitektur)
-* [Struktur Folder](#-struktur-folder)
-* [Daftar 15 Klaster Akademis](#-daftar-15-klaster-akademis)
-* [Panduan Instalasi & Setup](#-panduan-instalasi--setup)
-* [Alur Eksekusi Notebook](#-alur-eksekusi-notebook)
-* [Panduan Menjalankan Web Dashboard](#-panduan-menjalankan-web-dashboard)
-* [Desain Visual (Glassmorphism)](#-desain-visual-glassmorphism)
-* [Lisensi](#-lisensi)
+
+- [Overview Arsitektur](#-overview-arsitektur)
+- [Struktur Folder](#-struktur-folder)
+- [Daftar 15 Klaster Akademis](#-daftar-15-klaster-akademis)
+- [Panduan Instalasi & Setup](#-panduan-instalasi--setup)
+- [Alur Eksekusi Notebook](#-alur-eksekusi-notebook)
+- [Panduan Menjalankan Web Dashboard](#-panduan-menjalankan-web-dashboard)
+- [Desain Visual (Glassmorphism)](#-desain-visual-glassmorphism)
+- [Lisensi](#-lisensi)
 
 ---
 
@@ -47,7 +48,7 @@ graph TD
 ## 📂 Struktur Folder
 
 ```text
-Arxiv/ (Root)
+arXiv-Topic-Explorer/ (Root)
 │
 ├── arxiv-metadata-oai-snapshot.json  <-- Berkas Dataset Utama (Unduh dari Kaggle)
 ├── README.md                         <-- Berkas Dokumentasi Repositori ini
@@ -76,35 +77,37 @@ Arxiv/ (Root)
 
 Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terbobot:
 
-| ID | Nama Bidang Akademis Resmi | Top 3 Kategori arXiv Dominan |
-|----|----------------------------|-------------------------------|
-| **00** | Gravitasi, Kosmologi & Fisika Energi Tinggi | gr-qc, hep-th, astro-ph.HE |
-| **01** | Pemrosesan Bahasa Alami & AI Core | cs.CL, cs.AI, cs.LG |
-| **02** | Sistem Kontrol, Optimasi & Sistem Dinamis | cs.LG, cs.CV, cs.AI |
-| **03** | Fisika Kuantum & Informasi Kuantum | quant-ph, cond-mat.mes-hall, hep-th |
-| **04** | Fisika Energi Tinggi Teoretis | hep-th, hep-ph, gr-qc |
-| **05** | Fisika Fenomenologi & Sistem Kompleks | hep-ph, cs.LG, cs.AI |
-| **06** | Fisika Benda Terkondensasi & Ilmu Bahan | cond-mat.mes-hall, cond-mat.str-el, cond-mat.mtrl-sci |
-| **07** | Pembelajaran Mesin & Deep Learning Utama | cs.LG, cs.AI, cs.CV |
-| **08** | Astrofisika & Astronomi | astro-ph.GA, astro-ph, astro-ph.SR |
-| **09** | Visi Komputer & Jaringan Saraf | cs.LG, cs.CV, cs.AI |
-| **10** | Topik Multidisiplin & Umum | hep-ph, cs.LG, cs.CV |
-| **11** | Aljabar, Teori Grup & Teori Representasi | math.GR, math.RT, math.RA |
-| **12** | Persamaan Diferensial & Analisis Numerik | math.AP, math-ph, math.MP |
-| **13** | AI Generatif, Difusi & Retrieval | cs.CV, cs.AI, cs.CL |
-| **14** | Kosmologi & Fenomenologi Partikel | hep-ph, astro-ph.CO, gr-qc |
+| ID     | Nama Bidang Akademis Resmi                  | Top 3 Kategori arXiv Dominan                          |
+| ------ | ------------------------------------------- | ----------------------------------------------------- |
+| **00** | Gravitasi, Kosmologi & Fisika Energi Tinggi | gr-qc, hep-th, astro-ph.HE                            |
+| **01** | Pemrosesan Bahasa Alami & AI Core           | cs.CL, cs.AI, cs.LG                                   |
+| **02** | Sistem Kontrol, Optimasi & Sistem Dinamis   | cs.LG, cs.CV, cs.AI                                   |
+| **03** | Fisika Kuantum & Informasi Kuantum          | quant-ph, cond-mat.mes-hall, hep-th                   |
+| **04** | Fisika Energi Tinggi Teoretis               | hep-th, hep-ph, gr-qc                                 |
+| **05** | Fisika Fenomenologi & Sistem Kompleks       | hep-ph, cs.LG, cs.AI                                  |
+| **06** | Fisika Benda Terkondensasi & Ilmu Bahan     | cond-mat.mes-hall, cond-mat.str-el, cond-mat.mtrl-sci |
+| **07** | Pembelajaran Mesin & Deep Learning Utama    | cs.LG, cs.AI, cs.CV                                   |
+| **08** | Astrofisika & Astronomi                     | astro-ph.GA, astro-ph, astro-ph.SR                    |
+| **09** | Visi Komputer & Jaringan Saraf              | cs.LG, cs.CV, cs.AI                                   |
+| **10** | Topik Multidisiplin & Umum                  | hep-ph, cs.LG, cs.CV                                  |
+| **11** | Aljabar, Teori Grup & Teori Representasi    | math.GR, math.RT, math.RA                             |
+| **12** | Persamaan Diferensial & Analisis Numerik    | math.AP, math-ph, math.MP                             |
+| **13** | AI Generatif, Difusi & Retrieval            | cs.CV, cs.AI, cs.CL                                   |
+| **14** | Kosmologi & Fenomenologi Partikel           | hep-ph, astro-ph.CO, gr-qc                            |
 
 ---
 
 ## ⚙️ Panduan Instalasi & Setup
 
 1. **Clone repositori ini**:
+
    ```bash
-   git clone https://github.com/USERNAME/Arxiv-Topic-Explorer.git
+   git clone https://github.com/haidarfaizul/Arxiv-Topic-Explorer.git
    cd Arxiv-Topic-Explorer
    ```
 
 2. **Instal dependensi Python**:
+
    ```bash
    pip install pandas numpy scipy scikit-learn joblib matplotlib seaborn jupyter
    ```
@@ -125,20 +128,7 @@ Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terb
 1. Masuk ke folder [03_Web_Dashboard/](./03_Web_Dashboard/).
 2. Klik ganda pada berkas [index.html](./03_Web_Dashboard/index.html) untuk langsung membukanya di browser internet Anda.
 3. **Tab yang Tersedia**:
-   * **Overview**: Widget informasi ringkas statistik dataset.
-   * **Topic Explorer**: Sidebar interaktif untuk melihat deskripsi, kata kunci teratas, dan kategori arXiv asli dari 15 klaster topik.
-   * **Trend Analysis**: Galeri visualisasi 8 grafik tren temporal.
-   * **Interactive Predictor**: Masukkan judul/abstrak draf paper baru Anda untuk diprediksi klasternya secara instan langsung di sisi klien (*client-side*).
-
----
-
-## 🎨 Desain Visual (Glassmorphism)
-Dashboard web dirancang mengikuti estetika **Apple HIG (Human Interface Guidelines)** menggunakan **Glassmorphism murni**:
-* **Obsidian Obsidian Base**: Latar belakang gelap pekat (`#07070a`) dengan efek gradasi lingkaran pendaran warna biru dan ungu redup.
-* **Translucent Panels**: Panel kaca dengan properti CSS `backdrop-filter: blur(25px) saturate(190%);` dengan perbatasan tipis transparan.
-* **Responsive Layout**: Desain responsif fleksibel yang adaptif pada resolusi layar monitor hingga layar seluler.
-
----
-
-## 📜 Lisensi
-Proyek ini dilisensikan di bawah **MIT License** - lihat berkas `LICENSE` untuk rincian selengkapnya.
+   - **Overview**: Widget informasi ringkas statistik dataset.
+   - **Topic Explorer**: Sidebar interaktif untuk melihat deskripsi, kata kunci teratas, dan kategori arXiv asli dari 15 klaster topik.
+   - **Trend Analysis**: Galeri visualisasi 8 grafik tren temporal.
+   - **Interactive Predictor**: Masukkan judul/abstrak draf paper baru Anda untuk diprediksi klasternya secara instan langsung di sisi klien (_client-side_).
