@@ -1,248 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>arXiv Topic Explorer Dashboard</title>
     <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <!-- Background Backlight Blobs for Glassmorphism depth -->
     <div class="glow-blob glow-blob-1"></div>
     <div class="glow-blob glow-blob-2"></div>
 
     <!-- Header / Navbar Sticky -->
     <header class="glass-navbar">
-        <div class="navbar-container">
-            <div class="navbar-logo">
-                <span class="logo-accent">arXiv</span> Topic Explorer
-            </div>
-            <nav class="navbar-menu">
-                <button class="nav-tab active" data-tab="overview">Overview</button>
-                <button class="nav-tab" data-tab="explorer">Topic Explorer</button>
-                <button class="nav-tab" data-tab="trends">Trend Analysis</button>
-                <button class="nav-tab" data-tab="predictor">Interactive Predictor</button>
-            </nav>
+      <div class="navbar-container">
+        <div class="navbar-logo">
+          <span class="logo-accent">arXiv</span> Topic Explorer
         </div>
+        <nav class="navbar-menu">
+          <button class="nav-tab active" data-tab="overview">Overview</button>
+          <button class="nav-tab" data-tab="explorer">Topic Explorer</button>
+          <button class="nav-tab" data-tab="trends">Trend Analysis</button>
+          <button class="nav-tab" data-tab="predictor">
+            Interactive Predictor
+          </button>
+        </nav>
+      </div>
     </header>
 
     <!-- Main Content Wrapper -->
     <main class="main-container">
+      <!-- Tab 1: Overview -->
+      <section id="tab-overview" class="tab-content active">
+        <div class="hero-section">
+          <h1 class="hero-title">
+            Eksplorasi Topik Penelitian Ilmiah Terbesar
+          </h1>
+          <p class="hero-subtitle">
+            Visualisasi interaktif pengelompokan topik dan tren temporal dari
+            3.100.507 paper ilmiah di arXiv menggunakan pembelajaran mesin
+            canggih.
+          </p>
+        </div>
 
-        <!-- Tab 1: Overview -->
-        <section id="tab-overview" class="tab-content active">
-            <div class="hero-section">
-                <h1 class="hero-title">Eksplorasi Topik Penelitian Ilmiah Terbesar</h1>
-                <p class="hero-subtitle">Visualisasi interaktif pengelompokan topik dan tren temporal dari 3.100.507 paper ilmiah di arXiv menggunakan pembelajaran mesin canggih.</p>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="glass-panel stat-card">
+            <div class="stat-value">3,100,507</div>
+            <div class="stat-label">Paper Ilmiah di-Cluster</div>
+          </div>
+          <div class="glass-panel stat-card">
+            <div class="stat-value">15</div>
+            <div class="stat-label">Klaster Topik Utama</div>
+          </div>
+          <div class="glass-panel stat-card">
+            <div class="stat-value">100k</div>
+            <div class="stat-label">Sampel Representatif Latih</div>
+          </div>
+          <div class="glass-panel stat-card">
+            <div class="stat-value">O(1) RAM</div>
+            <div class="stat-label">Hemat Memori (Reservoir Sampling)</div>
+          </div>
+        </div>
+
+        <!-- Methodology Panel -->
+        <div class="glass-panel methodology-section">
+          <h2>Alur Kerja Sains Data (Two-Stage Clustering Pipeline)</h2>
+          <div class="methodology-steps">
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <h3>Reservoir Sampling</h3>
+              <p>
+                Stratified sampling hemat RAM untuk mengambil 100.000 paper
+                representatif berdasarkan kategori utama bidang keilmuan arXiv.
+              </p>
             </div>
-
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <div class="glass-panel stat-card">
-                    <div class="stat-value">3,100,507</div>
-                    <div class="stat-label">Paper Ilmiah di-Cluster</div>
-                </div>
-                <div class="glass-panel stat-card">
-                    <div class="stat-value">15</div>
-                    <div class="stat-label">Klaster Topik Utama</div>
-                </div>
-                <div class="glass-panel stat-card">
-                    <div class="stat-value">100k</div>
-                    <div class="stat-label">Sampel Representatif Latih</div>
-                </div>
-                <div class="glass-panel stat-card">
-                    <div class="stat-value">O(1) RAM</div>
-                    <div class="stat-label">Hemat Memori (Reservoir Sampling)</div>
-                </div>
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <h3>Weighted TF-IDF</h3>
+              <p>
+                Ekstraksi fitur TF-IDF dari Judul (bobot 2.0) dan Abstrak (bobot
+                1.0) untuk membentuk matriks fitur berdimensi tinggi.
+              </p>
             </div>
-
-            <!-- Methodology Panel -->
-            <div class="glass-panel methodology-section">
-                <h2>Alur Kerja Sains Data (Two-Stage Clustering Pipeline)</h2>
-                <div class="methodology-steps">
-                    <div class="step-card">
-                        <div class="step-num">1</div>
-                        <h3>Reservoir Sampling</h3>
-                        <p>Stratified sampling hemat RAM untuk mengambil 100.000 paper representatif berdasarkan kategori utama bidang keilmuan arXiv.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-num">2</div>
-                        <h3>Weighted TF-IDF</h3>
-                        <p>Ekstraksi fitur TF-IDF dari Judul (bobot 2.0) dan Abstrak (bobot 1.0) untuk membentuk matriks fitur berdimensi tinggi.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-num">3</div>
-                        <h3>K-Means Model</h3>
-                        <p>Klastering tak terarah (K-Means) pada 100.000 sampel dilatih dan disimpan ke disk untuk dimuat ulang secara instan.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-num">4</div>
-                        <h3>Batch Inference</h3>
-                        <p>Prediksi klaster pada 3M paper sisa dijalankan secara bertahap (batch size 100k) dengan dukungan resume otomatis.</p>
-                    </div>
-                </div>
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <h3>K-Means Model</h3>
+              <p>
+                Klastering tak terarah (K-Means) pada 100.000 sampel dilatih dan
+                disimpan ke disk untuk dimuat ulang secara instan.
+              </p>
             </div>
-        </section>
-
-        <!-- Tab 2: Topic Explorer -->
-        <section id="tab-explorer" class="tab-content">
-            <div class="explorer-layout">
-                <!-- Sidebar: List of 15 clusters -->
-                <aside class="glass-panel explorer-sidebar">
-                    <h2 class="sidebar-title">Daftar Klaster</h2>
-                    <div class="cluster-list" id="cluster-selector-list">
-                        <!-- Dynamically populated via JS -->
-                    </div>
-                </aside>
-
-                <!-- Detailed panel -->
-                <article class="glass-panel explorer-details" id="cluster-details-panel">
-                    <!-- Dynamically populated via JS -->
-                    <div class="placeholder-text">Pilih klaster di sebelah kiri untuk melihat rincian topik ilmiah.</div>
-                </article>
+            <div class="step-card">
+              <div class="step-num">4</div>
+              <h3>Batch Inference</h3>
+              <p>
+                Prediksi klaster pada 3M paper sisa dijalankan secara bertahap
+                (batch size 100k) dengan dukungan resume otomatis.
+              </p>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Tab 3: Trend Analysis -->
-        <section id="tab-trends" class="tab-content">
-            <div class="section-header">
-                <h2>Analisis Tren Akademis Temporal (1993 - 2026)</h2>
-                <p>Analisis pergeseran minat akademis tahunan dan sebaran usia bidang keilmuan yang diekstrak dari ID paper arXiv.</p>
+      <!-- Tab 2: Topic Explorer -->
+      <section id="tab-explorer" class="tab-content">
+        <div class="explorer-layout">
+          <!-- Sidebar: List of 15 clusters -->
+          <aside class="glass-panel explorer-sidebar">
+            <h2 class="sidebar-title">Daftar Klaster</h2>
+            <div class="cluster-list" id="cluster-selector-list">
+              <!-- Dynamically populated via JS -->
             </div>
+          </aside>
 
-            <!-- Plots Gallery Grid -->
-            <div class="plots-grid">
-                <!-- Plot 1 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/trend_lineplot.png" alt="Trend Line Plot" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_lineplot.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>1. Grafik Garis Tren Popularitas Relatif</h3>
-                        <p>Menampilkan persentase pangsa pasar relatif untuk 15 klaster topik utama arXiv dari tahun 1993 hingga 2026. Grafik ini menunjukkan dengan jelas perpindahan dominasi dari bidang fisika energi tinggi tradisional ke ilmu komputer dan pembelajaran mesin sejak tahun 2012.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 2 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/trend_heatmap.png" alt="Trend Heatmap" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_heatmap.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>2. Heatmap Evolusi Topik Temporal</h3>
-                        <p>Peta panas matriks 2D (Tahun vs Klaster) yang diwarnai berdasarkan persentase popularitas tahunan. Berguna untuk mengidentifikasi "ledakan" intensitas publikasi pada klaster tertentu pada periode waktu tertentu secara instan.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 3 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/trend_stacked_area.png" alt="Stacked Area Chart" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_stacked_area.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>3. Grafik Komposisi Kumulatif Area Bertumpuk</h3>
-                        <p>Menyajikan proporsi area akumulatif total seluruh klaster untuk melihat perkembangan keseluruhan portofolio arsip arXiv. Menampilkan pertumbuhan dinamis dari bidang-bidang terapan.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 4 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/top_growing_topics.png" alt="Top Growing Topics" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik top_growing_topics.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>4. Top 5 Hottest Topics (Growth Velocity)</h3>
-                        <p>Topik dengan tingkat kenaikan persentase pangsa pasar tahunan terbesar dalam 5 tahun terakhir (2020 s.d. 2025). Mengungkapkan bidang penelitian paling populer dan aktif saat ini seperti AI Generatif dan Deep Learning.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 5 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/top_declining_topics.png" alt="Top Declining Topics" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik top_declining_topics.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>5. Top 5 Coolest Topics (Decline Velocity)</h3>
-                        <p>Menampilkan 5 bidang keilmuan yang mengalami penurunan pangsa pasar relatif terbesar dalam 5 tahun terakhir. Ini biasanya mewakili bidang yang mulai mapan atau mengalami pergeseran ke sub-bidang baru.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 6 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/dominant_topic_timeline.png" alt="Dominant Topic Timeline" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik dominant_topic_timeline.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>6. Linimasa Topik Nomor 1 Dominan</h3>
-                        <p>Grafik linimasa yang memetakan topik mana yang menjadi kontributor nomor satu terbanyak di arXiv untuk masing-masing tahun terbit, menunjukkan lompatan pergeseran disiplin sains.</p>
-                    </div>
-                </div>
-
-                <!-- Plot 7 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/cluster_year_distribution.png" alt="Cluster Year Distribution" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik cluster_year_distribution.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>7. Distribusi Tahun Publikasi per Klaster</h3>
-                        <p>Box plot sebaran tahun publikasi paper di setiap klaster. Membantu membedakan secara instan antara bidang penelitian klasik (sebaran merata sejak 1993) dengan bidang penelitian modern/emerging (sangat padat di tahun-tahun akhir).</p>
-                    </div>
-                </div>
-
-                <!-- Plot 8 -->
-                <div class="glass-panel plot-card">
-                    <img src="../02_Trend_Analysis/plots/cumulative_growth.png" alt="Cumulative Growth" class="plot-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik cumulative_growth.png Belum Terbentuk</text></svg>'">
-                    <div class="plot-info">
-                        <h3>8. Grafik Pertumbuhan Kumulatif Total Paper</h3>
-                        <p>Menampilkan total volume kumulatif paper yang diarsipkan di arXiv per topik dari tahun ke tahun, menggambarkan pertumbuhan absolut dari ilmu pengetahuan yang terakumulasi.</p>
-                    </div>
-                </div>
+          <!-- Detailed panel -->
+          <article
+            class="glass-panel explorer-details"
+            id="cluster-details-panel"
+          >
+            <!-- Dynamically populated via JS -->
+            <div class="placeholder-text">
+              Pilih klaster di sebelah kiri untuk melihat rincian topik ilmiah.
             </div>
-        </section>
+          </article>
+        </div>
+      </section>
 
-        <!-- Tab 4: Interactive Predictor -->
-        <section id="tab-predictor" class="tab-content">
-            <div class="predictor-layout">
-                <!-- Left panel: Form input -->
-                <div class="glass-panel predictor-form-panel">
-                    <h2>Prediksi Topik Paper Anda</h2>
-                    <p class="form-desc">Masukkan Judul dan Abstrak draf paper ilmiah Anda di bawah. Algoritma klasifikasi heuristik kami akan memprediksi klaster topik yang paling cocok secara langsung.</p>
-                    
-                    <form id="prediction-form" onsubmit="return false;">
-                        <div class="form-group">
-                            <label for="paper-title">Judul Paper</label>
-                            <input type="text" id="paper-title" placeholder="Contoh: Attention Is All You Need" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="paper-abstract">Abstrak Paper</label>
-                            <textarea id="paper-abstract" rows="8" placeholder="Contoh: We propose a new simple network architecture, the Transformer, based solely on attention mechanisms..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-predict" id="btn-predict-topic">Analisis & Klasifikasikan</button>
-                    </form>
-                </div>
+      <!-- Tab 3: Trend Analysis -->
+      <section id="tab-trends" class="tab-content">
+        <div class="section-header">
+          <h2>Analisis Tren Akademis Temporal (1993 - 2026)</h2>
+          <p>
+            Analisis pergeseran minat akademis tahunan dan sebaran usia bidang
+            keilmuan yang diekstrak dari ID paper arXiv.
+          </p>
+        </div>
 
-                <!-- Right panel: Results output -->
-                <div class="glass-panel predictor-result-panel" id="predictor-results-card">
-                    <h2>Hasil Klasifikasi Topik</h2>
-                    <div id="predictor-results-placeholder">
-                        <div class="placeholder-icon">🔍</div>
-                        <p>Masukkan data paper di sebelah kiri lalu klik tombol prediksi untuk melihat hasil analisis topik akademik.</p>
-                    </div>
-                    <div id="predictor-results-content" class="hidden">
-                        <!-- Top result card -->
-                        <div class="top-result-badge">Prediksi Utama</div>
-                        <div class="predicted-cluster-id" id="res-top-id">Klaster 07</div>
-                        <h3 class="predicted-cluster-name" id="res-top-name">Pembelajaran Mesin & Deep Learning Utama</h3>
-                        
-                        <div class="result-divider"></div>
-
-                        <!-- Top 3 Probability bars -->
-                        <h4>3 Klaster Teratas dengan Skor Kecocokan</h4>
-                        <div class="match-score-list" id="match-scores-container">
-                            <!-- Populated dynamically via JS -->
-                        </div>
-                    </div>
-                </div>
+        <!-- Plots Gallery Grid -->
+        <div class="plots-grid">
+          <!-- Plot 1 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/trend_lineplot.png"
+              alt="Trend Line Plot"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_lineplot.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>1. Grafik Garis Tren Popularitas Relatif</h3>
+              <p>
+                Menampilkan persentase pangsa pasar relatif untuk 15 klaster
+                topik utama arXiv dari tahun 1993 hingga 2026. Grafik ini
+                menunjukkan dengan jelas perpindahan dominasi dari bidang fisika
+                energi tinggi tradisional ke ilmu komputer dan pembelajaran
+                mesin sejak tahun 2012.
+              </p>
             </div>
-        </section>
+          </div>
 
+          <!-- Plot 2 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/trend_heatmap.png"
+              alt="Trend Heatmap"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_heatmap.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>2. Heatmap Evolusi Topik Temporal</h3>
+              <p>
+                Peta panas matriks 2D (Tahun vs Klaster) yang diwarnai
+                berdasarkan persentase popularitas tahunan. Berguna untuk
+                mengidentifikasi "ledakan" intensitas publikasi pada klaster
+                tertentu pada periode waktu tertentu secara instan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 3 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/trend_stacked_area.png"
+              alt="Stacked Area Chart"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik trend_stacked_area.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>3. Grafik Komposisi Kumulatif Area Bertumpuk</h3>
+              <p>
+                Menyajikan proporsi area akumulatif total seluruh klaster untuk
+                melihat perkembangan keseluruhan portofolio arsip arXiv.
+                Menampilkan pertumbuhan dinamis dari bidang-bidang terapan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 4 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/top_growing_topics.png"
+              alt="Top Growing Topics"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik top_growing_topics.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>4. Top 5 Hottest Topics (Growth Velocity)</h3>
+              <p>
+                Topik dengan tingkat kenaikan persentase pangsa pasar tahunan
+                terbesar dalam 5 tahun terakhir (2020 s.d. 2025). Mengungkapkan
+                bidang penelitian paling populer dan aktif saat ini seperti AI
+                Generatif dan Deep Learning.
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 5 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/top_declining_topics.png"
+              alt="Top Declining Topics"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik top_declining_topics.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>5. Top 5 Coolest Topics (Decline Velocity)</h3>
+              <p>
+                Menampilkan 5 bidang keilmuan yang mengalami penurunan pangsa
+                pasar relatif terbesar dalam 5 tahun terakhir. Ini biasanya
+                mewakili bidang yang mulai mapan atau mengalami pergeseran ke
+                sub-bidang baru.
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 6 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/dominant_topic_timeline.png"
+              alt="Dominant Topic Timeline"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik dominant_topic_timeline.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>6. Linimasa Topik Nomor 1 Dominan</h3>
+              <p>
+                Grafik linimasa yang memetakan topik mana yang menjadi
+                kontributor nomor satu terbanyak di arXiv untuk masing-masing
+                tahun terbit, menunjukkan lompatan pergeseran disiplin sains.
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 7 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/cluster_year_distribution.png"
+              alt="Cluster Year Distribution"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik cluster_year_distribution.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>7. Distribusi Tahun Publikasi per Klaster</h3>
+              <p>
+                Box plot sebaran tahun publikasi paper di setiap klaster.
+                Membantu membedakan secara instan antara bidang penelitian
+                klasik (sebaran merata sejak 1993) dengan bidang penelitian
+                modern/emerging (sangat padat di tahun-tahun akhir).
+              </p>
+            </div>
+          </div>
+
+          <!-- Plot 8 -->
+          <div class="glass-panel plot-card">
+            <img
+              src="../02_Trend_Analysis/plots/cumulative_growth.png"
+              alt="Cumulative Growth"
+              class="plot-img"
+              onerror="
+                this.src =
+                  'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23161620\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' fill=\'%23a0aec0\' text-anchor=\'middle\'>Grafik cumulative_growth.png Belum Terbentuk</text></svg>'
+              "
+            />
+            <div class="plot-info">
+              <h3>8. Grafik Pertumbuhan Kumulatif Total Paper</h3>
+              <p>
+                Menampilkan total volume kumulatif paper yang diarsipkan di
+                arXiv per topik dari tahun ke tahun, menggambarkan pertumbuhan
+                absolut dari ilmu pengetahuan yang terakumulasi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 4: Interactive Predictor -->
+      <section id="tab-predictor" class="tab-content">
+        <div class="predictor-layout">
+          <!-- Left panel: Form input -->
+          <div class="glass-panel predictor-form-panel">
+            <h2>Prediksi Topik Paper Anda</h2>
+            <p class="form-desc">
+              Masukkan Judul dan Abstrak draf paper ilmiah Anda di bawah.
+              Algoritma klasifikasi heuristik kami akan memprediksi klaster
+              topik yang paling cocok secara langsung.
+            </p>
+
+            <form id="prediction-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="paper-title">Judul Paper</label>
+                <input
+                  type="text"
+                  id="paper-title"
+                  placeholder="Contoh: Attention Is All You Need"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="paper-abstract">Abstrak Paper</label>
+                <textarea
+                  id="paper-abstract"
+                  rows="8"
+                  placeholder="Contoh: We propose a new simple network architecture, the Transformer, based solely on attention mechanisms..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-predict" id="btn-predict-topic">
+                Analisis & Klasifikasikan
+              </button>
+            </form>
+          </div>
+
+          <!-- Right panel: Results output -->
+          <div
+            class="glass-panel predictor-result-panel"
+            id="predictor-results-card"
+          >
+            <h2>Hasil Klasifikasi Topik</h2>
+            <div id="predictor-results-placeholder">
+              <div class="placeholder-icon">🔍</div>
+              <p>
+                Masukkan data paper di sebelah kiri lalu klik tombol prediksi
+                untuk melihat hasil analisis topik akademik.
+              </p>
+            </div>
+            <div id="predictor-results-content" class="hidden">
+              <!-- Top result card -->
+              <div class="top-result-badge">Prediksi Utama</div>
+              <div class="predicted-cluster-id" id="res-top-id">Klaster 07</div>
+              <h3 class="predicted-cluster-name" id="res-top-name">
+                Pembelajaran Mesin & Deep Learning Utama
+              </h3>
+
+              <div class="result-divider"></div>
+
+              <!-- Top 3 Probability bars -->
+              <h4>3 Klaster Teratas dengan Skor Kecocokan</h4>
+              <div class="match-score-list" id="match-scores-container">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer class="glass-footer">
-        <p>© 2026 arXiv Topic Explorer. Dibuat dengan Estetika HIG Apple-style & Sains Data Modern.</p>
+      <p>© 2026 arXiv Topic Explorer. Haidar Faizul Ikram E. J.</p>
     </footer>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
