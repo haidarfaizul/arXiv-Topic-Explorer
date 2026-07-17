@@ -1,0 +1,4 @@
+arxiv-metadata-oai-snapshot.json
+*.csv
+.ipynb_checkpoints/
+__pycache__/
