@@ -8,3 +8,8 @@
 Reorganisasi & Penamaan:
 - [x] Task 1: Reorganisasi Direktori (completed in this session, commits ce8ddf2)
 - [x] Task 2: Analisis Hasil & Penamaan Klaster (completed, cluster_names.json written)
+
+Analisis Tren (Opsi 2):
+- [x] Task 1: Setup & ID Parser Unit Test (completed, commits 631ec2d)
+- [x] Task 2: Data Aggregation & Velocity Metrics (completed)
+- [x] Task 3: Visualisasi & Ekspor Grafik (completed)
