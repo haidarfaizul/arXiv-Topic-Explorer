@@ -13,3 +13,9 @@ Analisis Tren (Opsi 2):
 - [x] Task 1: Setup & ID Parser Unit Test (completed, commits 631ec2d)
 - [x] Task 2: Data Aggregation & Velocity Metrics (completed)
 - [x] Task 3: Visualisasi & Ekspor Grafik (completed)
+
+Web Dashboard (Opsi 3):
+- [x] Task 1: Setup & Assets Replicator (completed, commits 7ec4a54)
+- [x] Task 2: Pembuatan Struktur Layout (index.html) (completed)
+- [x] Task 3: Pembuatan Gaya Visual (style.css) (completed)
+- [x] Task 4: Pembuatan Logika Dashboard & Klasifikasi Mandiri (app.js) (completed)
