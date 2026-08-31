@@ -1,28 +1,27 @@
-# 🌌 arXiv Topic Explorer & Clustering Dashboard
+# arXiv Topic Explorer & Clustering Dashboard
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3%2B-orange?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Kaggle Dataset](https://img.shields.io/badge/Kaggle-ArXiv%20Dataset-blue?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/Cornell-University/arxiv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-**arXiv Topic Explorer** adalah proyek sains data _end-to-end_ yang melakukan pengelompokan (_clustering_) topik, analisis tren popularitas temporal, dan visualisasi interaktif dari **3,1 juta+** metadata publikasi ilmiah di arXiv dari tahun 1993 hingga 2026.
+**arXiv Topic Explorer** adalah proyek sains data _end-to-end_ yang melakukan pengelompokan (_clustering_) topik, analisis tren popularitas temporal, dan visualisasi interaktif dari **3,14 juta+ (3.148.882)** metadata publikasi ilmiah di arXiv dari tahun 1993 hingga 2026.
 
 ---
 
-## 📌 Daftar Isi
+## Daftar Isi
 
-- [Overview Arsitektur](#-overview-arsitektur)
-- [Struktur Folder](#-struktur-folder)
-- [Daftar 15 Klaster Akademis](#-daftar-15-klaster-akademis)
-- [Panduan Instalasi & Setup](#-panduan-instalasi--setup)
-- [Alur Eksekusi Notebook](#-alur-eksekusi-notebook)
-- [Panduan Menjalankan Web Dashboard](#-panduan-menjalankan-web-dashboard)
-- [Desain Visual (Glassmorphism)](#-desain-visual-glassmorphism)
-- [Lisensi](#-lisensi)
+- [Overview Arsitektur](#overview-arsitektur)
+- [Struktur Folder](#struktur-folder)
+- [Daftar 15 Klaster Akademis](#daftar-15-klaster-akademis)
+- [Panduan Instalasi & Setup](#panduan-instalasi--setup)
+- [Alur Eksekusi Notebook](#alur-eksekusi-notebook)
+- [Panduan Menjalankan Web Dashboard](#panduan-menjalankan-web-dashboard)
+- [Lisensi](#lisensi)
 
 ---
 
-## 🏗️ Overview Arsitektur
+## Overview Arsitektur
 
 Proyek ini dirancang menggunakan pipeline data hemat RAM $O(1)$ untuk memproses dataset berukuran 5.4 GB secara bertahap tanpa membebani memori sistem. Alur kerjanya digambarkan oleh diagram Mermaid berikut:
 
@@ -45,7 +44,7 @@ graph TD
 
 ---
 
-## 📂 Struktur Folder
+## Struktur Folder
 
 ```text
 arXiv-Topic-Explorer/ (Root)
@@ -54,26 +53,23 @@ arXiv-Topic-Explorer/ (Root)
 ├── README.md                         <-- Berkas Dokumentasi Repositori ini
 │
 ├── 01_Clustering_and_Labelling/
-│   ├── arxiv_topic_clustering.ipynb   <-- Latih K-Means & Prediksi 3.1M paper
+│   ├── arxiv_topic_clustering.ipynb   <-- Latih K-Means & Prediksi 3.15M paper
 │   ├── checkpoints/                  <-- Model KMeans & TF-IDF (.joblib)
 │   ├── arxiv_clustered_results.csv   <-- Hasil prediksi klaster (CSV)
 │   └── cluster_names.json             <-- Pemetaan 15 Klaster ke nama topik resmi
 │
 ├── 02_Trend_Analysis/
-│   ├── topic_trend_analysis.ipynb     <-- Analisis tren temporal (1993 - 2026)
+│   ├── topic_trend_analysis.ipynb     <-- Analisis tren temporal (1993 - 2026) dengan Polars
 │   └── plots/                        <-- 8 Grafik tren tahunan (PNG)
 │
 └── 03_Web_Dashboard/
-    ├── index.html                    <-- Dashboard Utama (Glassmorphism)
-    ├── style.css                     <-- Desain visual Apple HIG
-    ├── app.js                        <-- Logika interaktif & Alat Prediktor
-    └── data/
-        └── cluster_names.json        <-- Salinan pemetaan untuk dashboard
+    ├── app.py                        <-- Streamlit Web Dashboard (QuestUI)
+    └── requirements.txt              <-- Dependensi dashboard
 ```
 
 ---
 
-## 🔬 Daftar 15 Klaster Akademis
+## Daftar 15 Klaster Akademis
 
 Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terbobot:
 
@@ -97,7 +93,7 @@ Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terb
 
 ---
 
-## ⚙️ Panduan Instalasi & Setup
+## Panduan Instalasi & Setup
 
 1. **Clone repositori ini**:
 
@@ -109,26 +105,30 @@ Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terb
 2. **Instal dependensi Python**:
 
    ```bash
-   pip install pandas numpy scipy scikit-learn joblib matplotlib seaborn jupyter
+   pip install pandas polars numpy scipy scikit-learn joblib matplotlib seaborn jupyter streamlit
    ```
 
 3. **Unduh Dataset**: Unduh [Kaggle Cornell University arXiv Dataset](https://www.kaggle.com/datasets/Cornell-University/arxiv) dan letakkan file `arxiv-metadata-oai-snapshot.json` di root direktori proyek Anda.
 
 ---
 
-## 📓 Alur Eksekusi Notebook
+## Alur Eksekusi Notebook
 
-1. **Latih & Prediksi**: Jalankan Jupyter Notebook di [01_Clustering_and_Labelling/arxiv_topic_clustering.ipynb](./01_Clustering_and_Labelling/arxiv_topic_clustering.ipynb). Notebook ini melatih model clustering pada 100k sampel representatif dan memprediksi klaster seluruh data sisa (~3.1M paper) menggunakan batch processing hemat memori.
+1. **Latih & Prediksi**: Jalankan Jupyter Notebook di [01_Clustering_and_Labelling/arxiv_topic_clustering.ipynb](./01_Clustering_and_Labelling/arxiv_topic_clustering.ipynb). Notebook ini melatih model clustering pada 100k sampel representatif dan memprediksi klaster seluruh data sisa (~3.15M paper) menggunakan batch processing hemat memori.
 2. **Analisis Tren**: Jalankan Jupyter Notebook di [02_Trend_Analysis/topic_trend_analysis.ipynb](./02_Trend_Analysis/topic_trend_analysis.ipynb) untuk menghasilkan 8 grafik visualisasi evolusi sains tahunan di folder [02_Trend_Analysis/plots/](./02_Trend_Analysis/plots/).
 
 ---
 
-## 🖥️ Panduan Menjalankan Web Dashboard
+## Panduan Menjalankan Streamlit Web Dashboard
 
-1. Masuk ke folder [03_Web_Dashboard/](./03_Web_Dashboard/).
-2. Klik ganda pada berkas [index.html](./03_Web_Dashboard/index.html) untuk langsung membukanya di browser internet Anda.
+1. Buka terminal pada root direktori proyek dan jalankan perintah:
+   ```bash
+   streamlit run 03_Web_Dashboard/app.py
+   ```
+2. Aplikasi dashboard akan otomatis terbuka di browser internet Anda (`http://localhost:8501`).
 3. **Tab yang Tersedia**:
-   - **Overview**: Widget informasi ringkas statistik dataset.
-   - **Topic Explorer**: Sidebar interaktif untuk melihat deskripsi, kata kunci teratas, dan kategori arXiv asli dari 15 klaster topik.
-   - **Trend Analysis**: Galeri visualisasi 8 grafik tren temporal.
-   - **Interactive Predictor**: Masukkan judul/abstrak draf paper baru Anda untuk diprediksi klasternya secara instan langsung di sisi klien (_client-side_).
+   - **Overview & Pipeline**: Ringkasan metrik statistik 3.15M paper & arsitektur pipeline komputasi.
+   - **Topic Explorer**: Pembedahan kata kunci representatif & profil ground-truth untuk 15 klaster.
+   - **Trend Analysis**: Galeri 8 grafik evolusi tren sains dari tahun 1993 hingga 2026.
+   - **AI Paper Predictor**: Fitur prediksi topik real-time menggunakan model Scikit-Learn asli (`.joblib`) dilengkapi tombol *Quick Test Examples*.
+   - **Research Topic Advisor**: Penasihat topik riset cerdas & penemu celah riset (*novelty gap finder*) berbasis minat domain, persona riset, dan analisis kata kunci awal.
