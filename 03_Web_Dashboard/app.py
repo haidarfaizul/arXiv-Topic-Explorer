@@ -10,14 +10,14 @@ import joblib
 # 1. Page Configuration
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="arXiv Topic Explorer • QuestUI",
+    page_title="arXiv Topic Explorer",
     page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------------------
-# 2. QuestUI Design System Stylesheet (Cinzel + Spectral + Fira Code + Gold/Parchment)
+# 2. Custom Stylesheet (Cinzel + Spectral + Fira Code + Gold/Parchment)
 # -----------------------------------------------------------------------------
 st.markdown("""
 <!-- Google Fonts: Cinzel (Headings), Spectral (Body), Fira Code (Mono) -->
@@ -42,7 +42,7 @@ st.markdown("""
         letter-spacing: 0.5px;
     }
     
-    /* QuestUI Cards */
+    /*  Cards */
     .quest-card {
         background-color: #2C1A10;
         border: 1px solid #5C3D2E;
@@ -60,7 +60,7 @@ st.markdown("""
         border-color: #CA8A04;
     }
     
-    /* Stat Metric Box (QuestUI) */
+    /* Stat Metric Box () */
     .stat-card-quest {
         background-color: #2C1A10;
         border: 1px solid #5C3D2E;
@@ -286,7 +286,7 @@ st.markdown("""
     }
     
     /* -------------------------------------------------------------------------
-       Sidebar QuestUI Custom Styling (Explicit High-Contrast Colors)
+       Sidebar  Custom Styling (Explicit High-Contrast Colors)
        ------------------------------------------------------------------------- */
     [data-testid="stSidebar"], section[data-testid="stSidebar"] {
         background-color: #21140D !important;
@@ -757,11 +757,11 @@ def load_trained_models():
 models_bundle = load_trained_models()
 
 # -----------------------------------------------------------------------------
-# 6. Sidebar Navigation & Quest Branding
+# 6. Sidebar Navigation & Branding
 # -----------------------------------------------------------------------------
 with st.sidebar:
     st.markdown("### arXiv Topic Explorer")
-    st.caption("QuestUI Design System • Scientific Intelligence")
+    st.caption("Scientific Intelligence & Analytics")
     
     # Model Status Badge
     if models_bundle.get("status") == "ready":
@@ -770,10 +770,10 @@ with st.sidebar:
         st.markdown('<span class="quest-chip chip-gold">[STATUS: HEURISTIC]</span>', unsafe_allow_html=True)
     
     st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
-    st.markdown("#### Quest Modules")
+    st.markdown("#### Dashboard Modules")
     st.markdown("""
     - **Overview**: 3.15M Papers & Pipeline
-    - **Topic Explorer**: 15 Academic Quests
+    - **Topic Explorer**: 15 Academic Clusters
     - **Trend Radar**: 8 Temporal Evolutions
     - **AI Predictor**: Real-Time Neural Match
     - **Research Advisor**: Novelty & Gap Finder
@@ -789,7 +789,7 @@ with st.sidebar:
 # 7. Main Tabs Interface (5 Tabs)
 # -----------------------------------------------------------------------------
 st.title("arXiv Topic Explorer Dashboard")
-st.caption("A Grand Scholarly Quest: Mining 3,148,882 Papers with Weighted K-Means & Temporal Intelligence.")
+st.caption("Mining 3,148,882 Papers with Weighted K-Means & Temporal Intelligence.")
 
 tab_overview, tab_explorer, tab_trends, tab_predictor, tab_advisor = st.tabs([
     "Overview & Pipeline",
@@ -816,7 +816,7 @@ with tab_overview:
         st.markdown("""
         <div class="stat-card-quest">
             <div class="stat-number-quest">15</div>
-            <div class="stat-label-quest">Topic Quests</div>
+            <div class="stat-label-quest">Topic Clusters</div>
         </div>
         """, unsafe_allow_html=True)
     with col3:
@@ -886,7 +886,7 @@ with tab_overview:
 # TAB 2: TOPIC EXPLORER (15 CLUSTERS)
 # =============================================================================
 with tab_explorer:
-    st.markdown("### 15 Academic Topic Quests")
+    st.markdown("### 15 Academic Topic Clusters")
     st.markdown("Pilih klaster untuk membedah kata kunci representatif dan profil kategori ground-truth arXiv:")
     
     # Cluster Selector
@@ -1018,7 +1018,7 @@ with tab_predictor:
     st.markdown("Uji draf paper ilmiah Anda langsung pada model Scikit-Learn K-Means untuk memprediksi klaster topik secara real-time:")
     
     # Preset Quick Examples
-    st.markdown("**Preset Quest Examples (1-Click Test):**")
+    st.markdown("**Preset Examples (1-Click Test):**")
     ex_col1, ex_col2, ex_col3 = st.columns(3)
     
     default_title = ""
@@ -1029,15 +1029,15 @@ with tab_predictor:
         st.session_state.pred_abstract = "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely."
         
     with ex_col1:
-        if st.button("Quest 1: Deep Learning & NLP"):
+        if st.button("Example 1: Deep Learning & NLP"):
             st.session_state.pred_title = "Attention Is All You Need"
             st.session_state.pred_abstract = "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely."
     with ex_col2:
-        if st.button("Quest 2: Quantum Information"):
+        if st.button("Example 2: Quantum Information"):
             st.session_state.pred_title = "Experimental Quantum Teleportation of Qubits"
             st.session_state.pred_abstract = "Quantum teleportation is the transmission and reconstruction of an unknown quantum state using entanglement and classical communication. We demonstrate the teleportation of arbitrary polarization states of single photons across superconducting quantum circuits with high fidelity."
     with ex_col3:
-        if st.button("Quest 3: Astrophysics & Galaxies"):
+        if st.button("Example 3: Astrophysics & Galaxies"):
             st.session_state.pred_title = "Observational Constraints on Dark Matter Distribution in Galaxies"
             st.session_state.pred_abstract = "We present high-resolution radio and optical observations of stellar kinematics and gas emission in nearby spiral galaxies. The rotation curves indicate substantial dark matter halos with gravitational lensing constraints."
 

@@ -1,11 +1,16 @@
 # arXiv Topic Explorer & Clustering Dashboard
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://arxiv-topic-explorer.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3%2B-orange?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Kaggle Dataset](https://img.shields.io/badge/Kaggle-ArXiv%20Dataset-blue?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/Cornell-University/arxiv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
+> 🚀 **Live Interactive Dashboard:** [https://arxiv-topic-explorer.streamlit.app/](https://arxiv-topic-explorer.streamlit.app/)
+
 **arXiv Topic Explorer** adalah proyek sains data _end-to-end_ yang melakukan pengelompokan (_clustering_) topik, analisis tren popularitas temporal, dan visualisasi interaktif dari **3,14 juta+ (3.148.882)** metadata publikasi ilmiah di arXiv dari tahun 1993 hingga 2026.
+
+![arXiv Topic Explorer Dashboard](./arXiv%20Dashboard.png)
 
 ---
 
@@ -63,7 +68,7 @@ arXiv-Topic-Explorer/ (Root)
 │   └── plots/                        <-- 8 Grafik tren tahunan (PNG)
 │
 └── 03_Web_Dashboard/
-    ├── app.py                        <-- Streamlit Web Dashboard (QuestUI)
+    ├── app.py                        <-- Streamlit Web Dashboard
     └── requirements.txt              <-- Dependensi dashboard
 ```
 
@@ -121,6 +126,11 @@ Berikut adalah hasil klasifikasi topik sains data berdasarkan model K-Means terb
 
 ## Panduan Menjalankan Streamlit Web Dashboard
 
+### 🌐 Live Demo Cloud
+Aplikasi dashboard telah aktif dan dapat dicoba secara langsung tanpa perlu instalasi lokal:  
+👉 **[https://arxiv-topic-explorer.streamlit.app/](https://arxiv-topic-explorer.streamlit.app/)**
+
+### 💻 Menjalankan Secara Lokal
 1. Buka terminal pada root direktori proyek dan jalankan perintah:
    ```bash
    streamlit run 03_Web_Dashboard/app.py
